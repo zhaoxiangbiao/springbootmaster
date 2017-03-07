@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@PropertySource({"classpath:data-source.properties"})
+@PropertySource ({"classpath:data-source.properties"})
 @EnableMongoRepositories(basePackages = "dbdemo.mongo.repositories")
 public class DataSourceConfig extends AbstractMongoConfiguration {
 	@Autowired private Environment env;

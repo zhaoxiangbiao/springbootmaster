@@ -6,7 +6,6 @@ import dbdemo.mysql.entity.User;
 import dbdemo.mysql.repository.DepartmentRepository;
 import dbdemo.mysql.repository.RoleRepository;
 import dbdemo.mysql.repository.UserRepository;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +20,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfiguration.class})
@@ -47,7 +47,7 @@ public class MysqlTest {
         Assert.notNull(department.getId());
 
         Role role = new Role();
-        role.setName("admin");
+        role.setName("张松");
         roleRepository.save(role);
         Assert.notNull(role.getId());
 
@@ -69,14 +69,16 @@ public class MysqlTest {
         Pageable pageable = new PageRequest(0, 10, new Sort(Sort.Direction.ASC, "id"));
         Page<User> page = userRepository.findAll(pageable);
         Assert.notNull(page);
+        System.out.println("张松！！！");
         for(User user : page.getContent()) {
             logger.info("====user==== user name:{}, department name:{}, role name:{}",
                     user.getName(), user.getDeparment().getName(), user.getRoles().get(0).getName());
         }
     }
 
-    //@Test
+//    @Test
     public void test(){
+        System.out.println("aaaaa");
         User user1 = userRepository.findByNameLike("u%");
         Assert.notNull(user1);
 
